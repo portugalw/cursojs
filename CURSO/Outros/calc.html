@@ -1,0 +1,102 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <center>
+            <h3>Calculadora</h3>
+            <table style="text-align: center;">
+                <tr>
+                    <td>
+                        <label width="250px"  id="saida"></label></td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input width="250px" type="text" placeholder="informe os números" id="entrada"></td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="btnSoma" onclick="somar();">+</button>
+                        <button id="btnSubtrai" onclick="subtrair();">-</button>
+                        <button id="btIgual" onclick="gerarResultado();">=</button>
+                    </td>
+                    
+                </tr>
+            </table>
+         </center>
+    </body>    
+</html>
+
+
+<script>
+
+    
+        getSaida().innerHTML = '';
+    
+
+    function getSaida(){
+        return document.querySelector("#saida");
+    }
+
+    function getEntrada(){
+        return document.querySelector("#entrada");
+    }
+
+
+    function subtrair(){
+        operar("-");
+    }
+    function somar(){
+        operar("+");
+    }
+
+    function operar(operador){
+        var valorInformado = getEntrada().value;
+        valorInformado = `${valorInformado} ${operador}`;
+
+        var resultado =  `${getSaida().innerHTML} ${valorInformado}`;
+
+        getSaida().innerHTML  = resultado;
+
+        getEntrada().value = '';
+        getEntrada().focus();
+    }
+
+    function gerarResultado(){
+
+        operar('=');
+
+        var operadores = getSaida().innerHTML.trim().split(' ');
+        var resultado = 0;
+        
+        for(var i = 0; i < operadores.length; i++){
+            // + -
+            var operador = operadores[i];
+            
+            if(!isNaN(parseFloat(operador)))
+            resultado = parseFloat(operador);
+            else{
+
+                switch(operador){
+                    case '+':
+                        resultado = resultado + parseFloat(operadores[i + 1]);
+                        i++;
+                        console.log(resultado);
+                        break;
+                    case '-':
+                        resultado = resultado - parseFloat(operadores[i + 1]);
+                        i++;
+                        console.log(resultado);
+                        break;
+
+                    default:
+                        console.log('DEFAULT');
+                }
+
+            }
+        }
+    }
+
+</script>

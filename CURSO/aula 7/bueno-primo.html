@@ -1,0 +1,39 @@
+<meta charset="utf-8">
+
+<script type="text/javascript">
+
+    function pulaLinha() {
+        document.write("<br>");
+        document.write("<br>");
+
+    }
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+
+
+    //entrada do número
+   numeroPrimo(parseInt(prompt("Digite um número: ")));
+
+    function numeroPrimo(numero) {
+        //variavel recebe o valor verdadeiro antes do inicio do for e fora do for
+        var primo = true;
+
+        //contador recebe 2, e termina antes do próprio numero
+        for (var contador = 2; contador < numero; contador++) {
+            if (numero % contador === 0) {
+                primo = false;
+                break;
+            }
+        }
+
+        //codicionais para mostrar na tela se é primo true; false quando não é primo.
+        if (primo === true) {
+            mostra(numero + " - É primo!")
+        } else {
+            mostra(numero + " - não é primo!")
+        }
+    }
+
+</script>

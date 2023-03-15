@@ -1,0 +1,41 @@
+<meta charset="UTF-8">
+
+<html>
+
+    <button onclick="sortear();">Clique para sortear</button>
+
+    <h1>Sorteio</h1>
+    <h2 id="aspiraSorteado" >-</h2>
+    <br>
+    <div id="sorteados"></div>
+
+</html>
+
+<script>
+
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    function adicionaSorteado(sorteado) {
+        document.getElementById('aspiraSorteado').innerHTML = sorteado;
+        document.getElementById('sorteados').insertAdjacentHTML('afterend','<li>'+sorteado+'</li>');
+    }
+
+    function sortear(){
+
+        var limiteIndice = aspiras.length - 1 ;
+        var indice =  Math.round( Math.random() * limiteIndice);
+
+        adicionaSorteado(aspiras[indice]);
+
+        aspiras.pop(indice);
+    }
+    
+    var aspiras = ['Olivério', 'Stéfany', 'Marcela', 'Damasceno', 'Nyshiama', 'Bueno', 'Bezerra', 'Nóbrega', 'Souza', 'Cleilton','Gizelli', 'Scórcio'];
+
+    
+    
+    
+
+</script>

@@ -1,0 +1,90 @@
+<meta charset="UTF-8">
+<script>
+
+
+        function pulaLinha(){
+            document.write("<br><br>")
+        }
+
+        function mostra(frase){
+            document.write(frase);
+            pulaLinha();
+        }
+
+        function sorteia(numeroMaximo){
+           return Math.round(Math.random() * numeroMaximo);
+        }  
+
+        var numeroMaximo = parseInt(prompt("Digite um número máximo que seja maior que zero para efetuar o sorteio: "));
+        var numeroPensado = sorteia(numeroMaximo);
+
+        var chute = parseInt(prompt("Digite seu chute!"));
+
+        if( chute == numeroPensado){
+            mostra("você acertou! O numero pensado é: " +numeroPensado );
+
+        }        
+        else if(chute < numeroPensado || chute == numeroPensado){
+
+            mostra("Você errou! Seu chute:" + chute + " É menor que o pensado:"+numeroPensado);
+        
+        }
+        else {
+            mostra("Você errou! Seu chute" + chute + " É maior que o pensado: " + numeroPensado);    
+        }    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+
+    function sorteia(numero){
+        return Math.round(Math.random() * numero);
+    }
+
+    var numeroMaximo = parseInt(prompt("Digite o número máximo que seja maior que zero para o sorteio:"));
+
+    var numeroPensado = sorteia(numeroMaximo);
+
+    var chute = parseInt(prompt("Já pensei. Qual você acha que é?"));
+
+    if(chute == numeroPensado) {
+
+        mostra("Uau! Você acertou, pois eu pensei no " + numeroPensado);
+    } 
+    
+    if (chute < numeroPensado){
+
+        mostra("Você errou! O número do chute (" + chute + ") é menor que o pensado: " + numeroPensado);
+    }
+    else{
+        mostra("Você errou! O número do chute (" + chute + ") é maior que o pensado: " + numeroPensado);
+    }
+
+
+</script>

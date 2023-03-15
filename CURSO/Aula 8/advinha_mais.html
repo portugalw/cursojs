@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+
+<input id="entradaDeDados" value="545454">
+<input id="entradaDeDados2">
+<button onclick="comparar();" >Compare com o meu segredo</button>
+
+<script>
+
+    var entradaDeDadosInput = document.querySelector("#entradaDeDados");
+    var segredo = 5;
+
+    var button = document.querySelector("button");
+    button.onclick = comparar;
+
+    function comparar2() {
+
+    }
+
+    function comparar() {
+        if(parseInt(entradaDeDadosInput.value) == segredo){
+            alert("VC ACERTOU");
+        }
+        else{
+            alert("VC ERROU");
+        }
+    }
+
+</script>

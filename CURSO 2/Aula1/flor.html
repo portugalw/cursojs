@@ -1,0 +1,35 @@
+<canvas width="600" height="400"></canvas>
+<input onblur="calcula();">
+
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var PI = 3.14;
+
+    pincel.fillStyle = 'lightgray';
+    pincel.fillRect(0, 0, 600, 400);
+
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * PI);
+        pincel.fill();
+    }
+   
+
+        var raio = 30;
+        var diametro = raio * 2;
+        var pontoXInicial = 300;
+        var pontoYInicial = 200;
+
+        desenhaCirculo(pontoXInicial, pontoYInicial, raio, 'red'); //Central
+        desenhaCirculo(pontoXInicial, pontoYInicial - diametro, raio, 'yellow');//Superior
+        desenhaCirculo(pontoXInicial, pontoYInicial + diametro, raio, 'blue');// Inferior
+        desenhaCirculo(pontoXInicial - diametro, pontoYInicial, raio, 'orange'); // esquerda
+        desenhaCirculo(pontoXInicial + diametro, pontoYInicial, raio, 'black'); // direita*/
+   
+
+</script>

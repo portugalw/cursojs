@@ -1,0 +1,26 @@
+<meta charset="UTF-8">
+<script>
+    
+function pulaLinha(){
+    document.write("<br>");
+}
+function escrevaLinhaDivisoria(){
+    document.write("<br>***********************************************<br><br>");
+}
+
+function escrevaTexto(texto, negrito){
+    
+    escrevaLinhaDivisoria();
+
+    if(negrito){
+        texto = "<b>"+texto+"</b>"
+    }
+    document.write(texto);
+    pulaLinha();
+}
+
+
+escrevaTexto("BEM-VINDO AO MEU PROGRAMA", false);
+escrevaTexto("ELE REALMENTE FUNCIONA");
+escrevaTexto("EU USEI FUNÇÃO PARA FAZER ISSO",true);
+</script>

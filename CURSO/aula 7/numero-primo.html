@@ -1,0 +1,38 @@
+<meta charset="UTF-8">
+<script>
+
+    function pulaLinha() {
+
+        document.write("<br>");
+    }
+
+    function mostra(frase) {
+
+        document.write(frase);
+        pulaLinha();
+    }
+
+    function verificarNumeroPrimo(numero){
+
+        for(var contador = 2; contador < numero; contador++){
+            if(numero % contador == 0){
+                return false;
+            }
+        }
+
+        return true;
+        
+    }
+    
+    var numeroMaximo = parseInt(prompt("Entre com o numero máximo:"));
+    
+    for(var numero = 2; numero <= numeroMaximo; numero++){
+
+        if(verificarNumeroPrimo(numero)){
+            mostra(numero);
+        }
+    }
+
+    mostra("FIM");
+
+</script>

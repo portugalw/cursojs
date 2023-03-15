@@ -1,0 +1,101 @@
+<meta charset="UTF-8">
+
+<h1>MUDA COR   <button>CORES</button> </h1>
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var i = 0; 
+    var cor = ['blue', 'red','green','orange'];
+    var raio = 5;
+    var desenha = false;
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    function desenhaCirculo(evento) {
+
+        if (!desenha)
+            return;
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+        pincel.fillStyle = cor[i];
+        pincel.beginPath();
+        
+        //pincel.arc(x, y, raio, 0, 2 * 3.14);
+        //pincel.fill();
+        console.log(x + ',' + y);
+
+          
+
+            if(evento.altKey){
+               raio  -= 5 ;                
+               console.log(x + ',' + y);   
+               console.log("ALT")
+             
+               if(raio <= 5 ){
+                  raio =5 ;
+               }
+            }
+
+            pincel.arc(x, y, raio, 0, 2 * 3.14);
+            pincel.fill();
+
+
+    }//FIM DESENHA CÍRCULO
+
+    function aumentarTamanho(evento){
+        if(evento.shiftKey){
+            raio  += 5 ;                
+            console.log(x + ',' + y);   
+            console.log("SHIFT")
+            if (raio >= 60){
+                raio = 60 ;
+            }
+        }
+    }
+
+    function desenhar(){
+        desenha = true;
+    }
+
+    function naoDesenha(){
+        desenha = false;
+    }
+
+    tela.onmousemove = desenhaCirculo;
+    tela.onmouseup = naoDesenha;
+    tela.onmousedown = desenhar;
+    tela.oncontextmenu = mudaCor;
+    tela.onclick = aumentarTamanho;
+
+    function mudaCor() {
+        
+        console.log('CLICOU !'); 
+        console.log('MUDA COR PARA '+cor[i]);    
+        console.log(i)  
+
+        i++;  
+        if(i >= cor.length){
+           i=0;      
+        }
+              
+        return false;
+    }
+
+    
+
+    
+
+   
+    var button = document.querySelector("button");
+        button.onclick = mudaCor;
+        console.log('CLICOU COR ');
+
+
+</script>
+
+
+<button onclick="location.reload()">LIMPA TELA</button>

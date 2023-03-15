@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <canvas width="600" height="400"  ></canvas>
+
+<script>
+
+ var tela = document.querySelector("canvas");
+ var pincel = tela.getContext('2d');
+
+
+
+ function desenhaEsquadro(xA, yA, xC, yC, cor) {
+
+    pincel.fillStyle = cor;
+    pincel.beginPath();
+    pincel.moveTo(xA , yA);
+    pincel.lineTo(xA, yC);
+    pincel.lineTo(xC, yC);
+    pincel.fill();
+}
+
+function desenhaTexto (x, y, texto, cor){
+    pincel.font = '30px Georgia';
+    pincel.fillStyle = cor;
+    pincel.fillText(texto, x, y);
+}
+
+
+desenhaEsquadro(50, 50, 400, 400, 'black');
+desenhaEsquadro(100, 175, 275, 350 , 'white');
+
+desenhaTexto(40, 40, "A", 'red'); 
+desenhaTexto(60, 40, "(50, 50)", 'black'); 
+desenhaTexto(30, 397, "B", 'red'); 
+desenhaTexto(60, 397, "(50, 400)", 'white'); 
+desenhaTexto(405, 397, "C", 'red'); 
+desenhaTexto(425, 397, "(400, 400)", 'black'); 
+
+
+
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,79 @@
+<canvas width="600" height="400"></canvas>
+<input type="text" value="name" placeholder="name">
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var xVermelho = 50;
+    var xVerde = 100;
+    var xAzul = 150;
+    var y = 50;
+    var corAtual = 'red';
+    var desenha = false;
+    var xEv = 0;
+    var yEv = 0;
+
+
+
+
+    function desenhaQuadrado(x, y, cor) {
+        pincel.fillStyle = cor;
+        pincel.fillRect(0, 0, x, y);
+    }
+
+    function desenhaPalheta() {
+        desenhaQuadrado(xAzul, y, 'blue');
+        desenhaQuadrado(xVerde, y, 'green');
+        desenhaQuadrado(xVermelho, y, 'red');
+    }
+
+    desenhaPalheta();
+
+
+    function desenhaCirculo(x, y) {
+        pincel.fillStyle = corAtual;
+        pincel.beginPath();
+        pincel.arc(x, y, 5, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+
+ 
+    function habilitarDesenhar() {
+        if(xEv <= xVermelho &&  yEv <= y){
+            corAtual = 'red';
+        }else if (xEv <= xVerde &&  yEv <= y){
+            corAtual = 'green';
+        }else if (xEv <= xAzul && yEv <= y){
+            corAtual = 'blue';
+        }
+        desenha = true;
+    }
+
+    function desabilitarDesenhar() {
+        desenha = false;
+    }
+
+    function movimento(evento) {
+        
+        xEv = evento.pageX - tela.offsetLeft;
+        yEv = evento.pageY - tela.offsetTop;
+        
+        if (desenha) {
+            if(xEv > 150 || yEv > 50 ){
+                desenhaCirculo(xEv, yEv);
+            }
+        }
+    }
+
+    tela.onmousemove = movimento; //move
+    tela.onmousedown = habilitarDesenhar; // clica
+    tela.onmouseup = desabilitarDesenhar; // solta
+ 
+
+   
+
+</script>

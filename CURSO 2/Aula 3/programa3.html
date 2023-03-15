@@ -1,0 +1,30 @@
+<canvas width="600" height="400" ></canvas>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0,0,600,400);
+
+    function exibeCirculo(event){
+
+        var x = event.pageX - tela.offsetLeft;
+        var y = event.pageY - tela.offsetTop;
+
+            pincel.fillStyle = 'blue';
+            pincel.beginPath();
+            pincel.arc(x,y, 10 , 0 , 2 * 3.14);
+            pincel.fill();
+
+
+            pincel.fillStyle = 'yellow';
+            pincel.fillRect(x, y, 5, 5);
+    }
+
+    tela.onclick = exibeCirculo;
+
+
+</script>

@@ -1,0 +1,62 @@
+<script>
+
+    function pulaLinha() {
+        document.write("<br><hr><br>");
+    }
+
+    function mostra(frase) {
+        document.write("<big>" + frase + "</big>");
+        pulaLinha();
+    }
+
+    function escreve(nome,nota,materia) {
+        mostra("O aluno " + nome + " passou de ano.");
+        mostra("O aluno " + nome + " ficou com nota " + nota + "  em " + materia + " .");
+        
+    }
+
+    var nome = "Bezerra";
+    var nota = 97;
+    var materia = "matematica";
+
+
+    escreve(nome,nota,materia);
+
+    var nome = "Nobrega";
+    var nota = 85;
+    var materia = "filosofia";
+
+
+    escreve(nome,nota,materia);
+
+    var nome = "Bueno";
+    var nota = 90;
+    var materia = "quimica";
+
+
+    escreve(nome,nota,materia);
+
+    // POR QUE DEVEMOS USAR FUNÇÕES?
+
+    /*mostra("O aluno Bezerra passou de ano.");
+    mostra("O aluno Bezerra ficou com nota 97 em matemática.");
+
+    mostra("O aluno Nobrega passou de ano.");
+    mostra("O aluno Nobrega ficou com nota 85 em filosofia.");
+
+    mostra("O aluno Bueno passou de ano.");
+    mostra("O aluno Bueno ficou com nota 90 em química.");*/
+
+
+    function mostra2(nome, nota, materia){
+        document.write("O aluno " + nome + " passou de ano <br>Tirou "+nota+" em "+materia);
+    }
+
+
+    mostra2("Nóbrega",92,"Filosofia" );
+    pulaLinha()
+    mostra2("Escórsio",95, "Lógica");
+
+
+</script>
+<script

@@ -1,0 +1,70 @@
+<canvas width="800" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    function desenhaRetangulo(x, y, largura, altura, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.fillRect(x, y, largura, altura);
+        pincel.strokeStyle = 'black';
+        pincel.strokeRect(x, y, largura, altura);
+
+    }
+
+    function desenhaTexto(texto, x , y, cor) {
+
+        pincel.font='20px Georgia';
+        pincel.fillStyle=cor;
+        pincel.fillText(texto, x, y);    
+    }
+
+    
+
+    var cores = ['blue', 'green', 'yellow', 'red'];
+    var serie2015 = [50, 25, 20, 5];
+    var serie2016 = [65, 20, 13, 2];
+    var legenda = ['Chrome', 'Firefox','Safari', 'Outros'];
+
+
+    function desenhaBarra(x, y, serie, cores, legenda, titulo) {
+        var corTexto = 'black';
+        desenhaTexto(titulo, x, y, corTexto);
+        var quantidadeDeDados = serie.length;
+
+        y+=10;
+
+        for(var i = 0; i < quantidadeDeDados; i++){
+
+            var largura = 50;
+            var altura = 3 * serie[i];
+            var posicaoYLegenda = y + altura/2;
+            var posicaoXLegenda = x + largura * 1.3;
+            desenhaRetangulo(x, y , largura, altura, cores[i] );
+            desenhaTexto(serie[i] + "%" , posicaoXLegenda , posicaoYLegenda, corTexto);
+            
+            y += altura;
+        }
+    }
+
+    function desenhaLegenda(x, y, cores, legenda) {
+        
+        var quantidadeDeDados = legenda.length;
+
+        for(var i = 0; i < quantidadeDeDados; i++){
+            y+=25;
+            desenhaRetangulo(x, y, 20,20, cores[i]);
+            desenhaTexto(legenda[i] , x + 25 , y+ 20, 'black');
+
+        }
+
+    }
+
+    desenhaTexto("Uso dos navegadores", 50, 30);
+    desenhaBarra(30, 60, serie2015, cores, legenda, "2015" );
+    desenhaBarra(180, 60, serie2016, cores, legenda, "2016" );
+    desenhaLegenda(330, 30, cores, legenda);
+
+</script>

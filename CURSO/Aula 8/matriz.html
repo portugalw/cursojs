@@ -1,0 +1,35 @@
+<script>
+
+    function mostra(frase){
+        document.write(frase);
+    }
+
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    var tamanhoDaMatriz = parseInt(prompt("Digite o numero do tamanho da matriz ímpar:"));
+
+    //LINHA 
+    for(var linha = 1; linha <= tamanhoDaMatriz; linha ++){
+
+        //COLUNA
+        for(var coluna = 1; coluna <= tamanhoDaMatriz; coluna ++){
+            
+            var itemImpresso = coluna;
+            
+            if(coluna == linha || linha + coluna == tamanhoDaMatriz + 1 )
+                itemImpresso = "A";
+            
+            //mostra( "["+linha +"," +  coluna+"]");
+            mostra(itemImpresso);
+            mostra(" ");
+        }
+
+        pulaLinha();
+    }
+    
+    
+    
+
+</script>

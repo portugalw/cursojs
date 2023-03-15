@@ -1,0 +1,88 @@
+<meta charset="UTF-8">
+<script>
+
+    var loginCadastrado = "alura";
+    var senhaCadastrada = "alura321";
+
+    var loginInformado;
+    var senhaInformada;
+
+    var tentativas = 0;
+    var maxTentativas = 3;
+    
+    while(tentativas < maxTentativas)
+    {
+        loginInformado = prompt("Informe seu login");
+        senhaInformada = prompt("Informe sua senha");
+
+        if( loginCadastrado == loginInformado && senhaCadastrada == senhaInformada ) {
+
+            alert("Bem-vindo ao sistema " + loginInformado);
+            tentativas = maxTentativas;
+        } else {
+
+            alert("Login inválido. Tente novamente");
+            tentativas++;
+        }
+
+        if(tentativas == maxTentativas)
+            alert("Você esgotou a quantidade máxima de logins");
+    }
+
+
+
+    var loginCadastrado = "alura";
+    var senhaCadastrada = "alura321";
+
+    var maximoTentativas = 3;
+    var tentativaAtual = 1;
+
+    while(tentativaAtual <= maximoTentativas) {
+
+        var loginInformado = prompt("Informe seu login");
+        var senhaInformada = prompt("Informe sua senha");
+
+        if( loginCadastrado == loginInformado && senhaCadastrada == senhaInformada ) {
+
+            alert("Bem-vindo ao sistema, " + loginInformado);
+
+            tentativaAtual = maximoTentativas; // acertou, então faço o gasto de todas as tentativas para sair do loop. Lá embaixo vai incrementar + 1! 
+
+        } else {
+
+            if (tentativaAtual == maximoTentativas) {
+                alert("Número permitido de tentativas ultrapassado!");
+            } else {
+                alert("Login inválido. Tente novamente");
+            }
+        }
+
+       // vai para a próxima tentativa
+        tentativaAtual = tentativaAtual +1  
+    }
+
+
+
+    var loginCadastrado = "alura";
+    var senhaCadastrada = "alura321";
+    var cont = 0;
+    
+    while (cont<3){
+    var loginInformado = prompt("Informe seu login");
+    var senhaInformada = prompt("Informe sua senha");
+  
+        if( loginCadastrado == loginInformado && senhaCadastrada == senhaInformada ) {
+
+            alert("Bem-vindo ao sistema " + loginInformado);
+            cont = 4;
+        } else {
+
+            alert("Login inválido. Tente novamente");
+            cont++;
+        }
+    }
+
+
+
+
+</script>
