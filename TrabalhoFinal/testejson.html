@@ -1,0 +1,43 @@
+<html>
+    <h1 id="nomeMilitar"></h1>
+    <h1></h1>
+</html>
+
+<script>
+   
+    var militarJson = {
+       nome : 'Milico de Tal',
+       idade : 35,
+       cursos : ["Segurança", "PQD", "PA", "Programador"],
+       posto : "1 Tenente",
+       quadro : "QOCON"
+    };
+
+    function imprimirDadosMilitar(militar){
+
+        mostra("Nome: " + militar.nome);
+        mostra("idade: " + militar.idade);
+        mostra("cursos: " + militar.cursos);
+        mostra("posto: " + militar.posto);
+        mostra("quadro: " + militar.quadro);
+    }
+
+    imprimirDadosMilitar(militarJson);
+
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+
+    document.querySelector("#nomeMilitar").innerHTML = militar;
+    
+    //imprimirDadosMilitar(militar, idadeMilitar, cursosMilitar, postoMilitar, quadro);
+
+    //(militar2, idadeMilitar2, cursosMilitar2, postoMilitar2, quadro2);
+
+
+</script>

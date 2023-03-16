@@ -1,0 +1,98 @@
+
+
+
+
+
+<script>
+   
+   // nome, logotipo, efetivo, comandante, localização, seçoes[]
+
+   var organizacoesMilitares = [];
+
+   var omCCABR = {
+    nome : "CCABR",
+    logotipo : "imagens\\ccabr.jpg",
+    efetivo : 180,
+    comandante : { 
+        nome : "Cel Wagner" ,
+        foto : "imagens\\comandantes\\celwagnerccabr.jpg"
+     },
+    localizacao : "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3839.1658821338974!2d-47.8744387!3d-15.7952049!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b174c784f19%3A0x4104897216ef9c6e!2sCentro%20de%20Intelig%C3%AAncia%20da%20Aeron%C3%A1utica%20(CIAER)!5e0!3m2!1spt-BR!2sbr!4v1678987047026!5m2!1spt-BR!2sbr",
+    secoes : ["DA", "DT"]  
+   };
+
+   var omOABR = {
+    nome : "OABR",
+    logotipo : "imagens\\oabr.jpg",
+    efetivo : 120,
+    comandante : { 
+        nome : "Cel Dent Vanessa Costa" ,
+        foto : "imagens\\comandantes\\celvanessaoabr.png"
+     },
+     localizacao : "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3839.1658821338974!2d-47.8744387!3d-15.7952049!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b174c784f19%3A0x4104897216ef9c6e!2sCentro%20de%20Intelig%C3%AAncia%20da%20Aeron%C3%A1utica%20(CIAER)!5e0!3m2!1spt-BR!2sbr!4v1678987047026!5m2!1spt-BR!2sbr",
+   secoes : ["Direção", "DT", "ASSAP", "SDCO"]  
+   };
+
+   var omHFAB = {
+    nome : "HFAB",
+    logotipo : "imagens\\hfab.jpg",
+    efetivo : 250,
+    comandante : { 
+        nome : "Cel Med JORGE ANTONIO CARVALHO FEIJÓ" ,
+        foto : "imagens\\comandantes\\celjorgeantoniofeijo.jpg"
+     },
+     localizacao : "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3839.1658821338974!2d-47.8744387!3d-15.7952049!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b174c784f19%3A0x4104897216ef9c6e!2sCentro%20de%20Intelig%C3%AAncia%20da%20Aeron%C3%A1utica%20(CIAER)!5e0!3m2!1spt-BR!2sbr!4v1678987047026!5m2!1spt-BR!2sbr",
+   secoes : ["Junta", "Farmácia", "Pronto Socorro", "RX"]  
+   };
+
+   // preencher os arrays - adicionar itens no array
+   organizacoesMilitares.push(omCCABR);
+   organizacoesMilitares.push(omOABR);
+   organizacoesMilitares.push(omHFAB);
+
+   // escrever as OM's na tela com o For
+   for(var i = 0; i < organizacoesMilitares.length; i++){
+        escreverOM(organizacoesMilitares[i]);
+   }
+
+   function escreverOM(om){
+        
+        mostra("Nome: " + om.nome);
+        mostraImagem(om.logotipo, om.nome);
+        mostra("Efetivo: " + om.efetivo);
+        pulaLinha();
+        mostra("Comandante: " + om.comandante.nome);
+        mostraImagem(om.comandante.foto, om.comandante.nome);
+        mostraMapa(om.localizacao);
+        mostra("Seções (" + om.secoes.length + "): " + om.secoes );
+        mostra("----------------------------------------------------------");
+        pulaLinha();
+   }
+
+   function mostraImagem(src, alt){
+        document.write("<img src='" + src + "' width='100px' height='100px' alt='"+ alt +"' >");
+        pulaLinha();
+        pulaLinha();
+   }
+
+   function mostraLink(url, textoExibicao){
+        document.write("<a href='" + url + "' target='_blank' >" + textoExibicao + "</a>");
+        pulaLinha();
+   }
+
+   function mostraMapa(url){
+        mostra("Localização")
+        document.write("<iframe src='" + url + "' style='height: 200px; width: 200px;'></iframe>");
+        pulaLinha();
+   }
+
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+
+</script>
