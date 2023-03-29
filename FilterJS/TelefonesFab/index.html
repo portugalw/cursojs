@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Telefones COMAER Brasília</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./modal.css">
+    
+    <script src="./jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="container">
+            <h1 class="display-4">Telefones COMAER -  Brasília DF</h1>
+            <h5><a target="_blank" href="http://www.gapbr.intraer/index.php/catalago-telefonico"> Catálogo OM - GAPBR</a> </h5>
+            <h5><a target="_blank" href="http://www.portal.intraer/portalintraer/capa/index.php?page=categoria">OMs Portal Intraer (Pesquisar por Brasília) </a> </h5>
+            <h5><a target="_blank" href="https://www.aer.mil.br/organizacoes">Oraganizações Militares (Pesquisar por DF)</a> </h5>
+            <h5><a target="_blank" href="Catalogo-telefone_COMAER.pdf">Lista Telefônica PDF</a> </h5>
+            
+            <div class="row mt-5 mb-3 align-items-center">
+                <div class="col-md-5">
+                    <button class="btn btn-primary btn-sm" id="rerender">Recarregar</button>
+                    
+                </div>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" placeholder="Procurar..." id="searchField">
+                </div>
+                <div class="col-md-2 text-right">
+                  <span class="pr-3">Itens por página</span>
+                </div>
+                <div class="col-md-2">
+                    <div class="d-flex justify-content-end">
+                        <select class="custom-select" name="rowsPerPage" id="changeRows">
+                            <option value="10" >10</option>
+                            <option value="20" selected >20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="root"></div>
+            <div style="display: none;" id="renderIframe">
+                <iframe id="iframeTelefones" width="1200px", height="1000px"></iframe>
+            </div>
+            <div class="mt-4">
+                <button class="btn btn-secondary" id="setPage2">Set Page 2</button>
+            </div>
+            <h6 class="mt-4">
+                <a href="story-latest.html">View full documentation</a>
+            </h6>
+        </div>
+       
+    </div>
+
+
+
+      
+      <div id="exampleModalLong" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-blg">
+            
+
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Telefone/Efetivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <iframe id="iframeTelefone" width="1050px" height="1000px" ></iframe>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+
+    
+ 
+
+    <script src="./data.js"></script>
+    <script src="./table-sortable.js"></script>
+    <script>
+
+           var table = $('#root').tableSortable({
+            data: data,
+            columns: columns,
+            searchField: '#searchField',
+            responsive: {
+                1100: {
+                    columns: {
+                        om: 'OM',
+                        sigla: 'Sigla',
+                        nome: 'Nome',
+                        url: 'Telefones',
+                        telefone: 'Telefones'
+                    },
+                },
+            },
+            formatCell: function(row, key) {
+                if (key === 'om') {
+                    return $("<a target='_blank' href='"+ row['url'] +"'> <img  src='"+ row['urlFoto'] +"' height='100px'> </a>").addClass('font-weight-bold');
+                }
+                if (key === 'url') {
+                    return $("<a onclick=abrirIframe('"+ row['url'] + "'); type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalLong'>Telefones Gerais </a>" +
+                             "<br><br><a onclick=abrirIframe('"+ row['urlEfetivo'] + "'); type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalLong'>Telefone do Efetivo </a>").addClass('font-weight-bold');
+                }
+                if (key === 'telefone') {
+                    
+                    var texto = ''
+                    row[key].forEach(e => { texto += '<li>'+ e +'</li>'});
+                    
+                    texto += "<li><a target='_blank' href=' " +  row['url'] +"'>Telefones</li>";
+                    texto += "<li><a target='_blank' href=' " +  row['urlEfetivo'] +"'>Telefones Efetivo</li>";
+
+                    return $(texto).addClass('font-weight-bold');
+                }
+                if (key === 'fullName') {
+                    return $('<span></span>').addClass('text-uppercase').text(row[key]);
+                }
+                // Finally return cell for rest of columns;
+                return row[key];
+            },
+            rowsPerPage: 20,
+            pagination: true,
+            tableWillMount: function() {
+                console.log('table will mount')
+            },
+            tableDidMount: function() {
+                console.log('table did mount')
+            },
+            tableWillUpdate: function() {console.log('table will update')},
+            tableDidUpdate: function() {console.log('table did update')},
+            tableWillUnmount: function() {console.log('table will unmount')},
+            tableDidUnmount: function() {console.log('table did unmount')},
+            onPaginationChange: function(nextPage, setPage) {
+                setPage(nextPage);
+            }
+        });
+
+        $('#changeRows').on('change', function() {
+            table.updateRowsPerPage(parseInt($(this).val(), 10));
+        });
+
+        $('#rerender').click(function() {
+            table.refresh(true);
+        });
+
+        $('#distory').click(function() {
+            table.distroy();
+        });
+
+        $('#refresh').click(function() {
+            table.refresh();
+        });
+
+        $('#setPage2').click(function() {
+            table.setPage(1);
+        });
+
+        function abrirIframe(url){
+            $('#iframeTelefone').attr('src', url)
+        }
+    </script>
+</body>
+</html>

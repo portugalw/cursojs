@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>  Desafio Dojo      </h1>
+    <iframe src="http://www.portal.intraer/portalintraer/capa/index.php?id=399&page=mostra_catalogo" height="1024" width="800" ></iframe>
+</body>
+</html>
+<script>
+
+    var alturas = [1.78, 1.85, 1.50, 1.75, 1.49 ];
+    var pesos  = [70, 89, 49, 85, 95];
+    var nomes = ['fulano1','fulano2', 'fulano3', 'fulano4', 'Sarah Guedes'];
+    var profissoes = ['professor', 'militar', 'advogado','gari','pedreiro'];
+    var pessoas = [];
+
+    for (var i=0; i < pesos.length;i++){
+        var pessoaJson = {
+            identificador: i, 
+            altura: alturas[i],
+            peso: pesos[i],
+            nome: nomes[i],
+        };
+        
+        pessoaJson.imc = calcularIMC(pessoaJson.peso, pessoaJson.altura);    
+        pessoaJson.profissao = sorteiaProfissao();    
+        
+        pessoas.push(pessoaJson);
+    }
+
+    console.log(pessoas);
+
+    function calcularIMC(peso, altura){
+        var imc = peso / Math.pow(altura, 2);
+        return imc.toFixed(2);
+    }
+
+    function verificarFaixaIMC(imc){
+        
+        if(imc <= 18.5){
+            return "Peso baixo";
+        }else if(imc < 25 && imc > 18.5){
+            return "<strong class='normal'> Peso normal </strong> ";
+        }else if(imc >= 25 && imc <30){
+            return "Sobrepeso";
+        }else if(imc >= 30 && imc < 35){
+            return "<strong class='obeso'> Obesidade Grau I </strong>";
+        }else if(imc >= 35 && imc <40){
+            return "<strong class='obeso'> Obesidade Grau II </strong>";
+        
+        }else if(imc >= 40 && imc <45){
+            return " <strong class='morbida'> Morbida </strong>";
+        }
+
+    }
+    //sortear profissão para cada pessoa sem repetir
+    
+    function sorteiaProfissao(){
+        var sortProfissao = Math.floor(Math.random()*profissoes.length);
+        
+        var profissao = profissoes[sortProfissao] ;
+        
+        profissoes.splice(sortProfissao, 1); // remove
+        
+        return profissao ;
+     
+    }
+    function imprimaDados(pessoas){
+
+
+        for( var i = 0; i <pessoas.length; i++) {
+
+            mostra("numero id: " + pessoas[i].identificador),
+            mostra("altura: " + pessoas[i].altura);
+            mostra("peso: " + pessoas[i].peso);
+            mostra("nome: " + pessoas[i].nome);
+            mostra("profissão: " + pessoas[i].profissao);
+            mostra("O seu IMC calculado é: " + pessoas[i].imc +" , " + verificarFaixaIMC(pessoas[i].imc));
+            pulaLinha();
+        }
+    }
+
+    function pulaLinha(){
+        document.write("<br>");
+        document.write("<hr>");
+        document.write("<br>");
+    }
+
+    function mostra(frase){
+        document.write(frase);
+        document.write("<br>");
+    }
+
+    imprimaDados(pessoas);
+
+</script>

@@ -1,0 +1,21 @@
+body {
+
+    background-color: grey;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.morbida{
+    color: red;
+}
+
+.obeso{
+    color: pink;
+}
+
+.normal{
+    color: green;
+}

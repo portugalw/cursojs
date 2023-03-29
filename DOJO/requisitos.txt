@@ -1,0 +1,29 @@
+1 - 
+
+Crie um Array com 5 posições com valores de altura
+Crie um Array com 5 posições com valores de peso
+Crie um Array com 5 posições com valores de nome de pessoas
+
+
+Crie uma estrutura de dados que tenha ao menos 5 propriedades:
+
+	1 Identificador numérico (gerado automaticamente)
+	1 Nome
+	1 Peso
+	1 Altura
+	
+	
+	Preencha as informações das pessoas de forma automatica fazendo uma iteração nos
+	Arrays;
+	
+		
+	Crie uma função que calcule o IMC de cada pessoa
+		
+	Imprima as propriedades na tela e também IMC.
+	Para imprimir, use uma função.
+
+
+2 - Crie um array com 5 profissões.
+Adicione para cada pessoa na estrutura JSON uma profissão aleatória.	
+	
+	
