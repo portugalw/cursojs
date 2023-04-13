@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8"> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portifolio</title>
-    <link rel="stylesheet" href="./styles/style.css">
-   
-</head>
-   
+    <head>
+        <meta charset="UTF-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portifolio</title>
+        <link rel="stylesheet" href="./styles/style.css">
+    </head>
 </html>
-
-
 
 <script>
     var entrada = `Paulo Moreira: História 8.9 Português 8.2 Inglês 9 Matemática 9.5 Geografia 8.8 Artes 7 Religião 2
@@ -49,8 +45,11 @@
 
     function gerarResultadoDosAlunos(listaMateriasAlunos, funcaoEscrever, titulo){
         var resultadoFinal = [];
+        
         for (let i = 0; i < listaMateriasAlunos.length; i++) {
-            var resultadoMaterias = funcaoEscrever(listaMateriasAlunos[i].agrupador, obterResultadoNotasDosAlunos(listaMateriasAlunos[i].notas));
+            var resultadoMaterias = funcaoEscrever(
+                    listaMateriasAlunos[i].agrupador, 
+                    obterResultadoNotasDosAlunos(listaMateriasAlunos[i].notas));
             resultadoFinal.push(resultadoMaterias);
         }
 
@@ -58,12 +57,8 @@
 
         resultadoFinalSort.forEach(e => { console.log(e) });  
 
-       
         document.write('<br>============================================ '+titulo+' =====================================================<br><br><br>');
-        resultadoFinalSort.forEach(e => {
-             document.write(e);  
-             
-            });  
+        resultadoFinalSort.forEach(e => { document.write(e); });  
         
     }
 
@@ -71,11 +66,11 @@
 
         var item =`<h3>${materia}: </h3> 
                     <p>
-                    maior nota  
-                   <strong class='titulo-destaque' > ${resultadoNotasDosAlunos.maiorNota} </strong> 
-                    obtida por ( <strong class='titulo-destaque'>${resultadoNotasDosAlunos.itensMaiorNota} </strong>) 
-                    e menor nota <strong class='titulo-destaque'> ${resultadoNotasDosAlunos.menorNota} </strong>
-                    obtida por ( <strong class='titulo-destaque'> ${resultadoNotasDosAlunos.itensMenorNota} </strong>)
+                        maior nota  
+                        <strong class='titulo-destaque' > ${resultadoNotasDosAlunos.maiorNota} </strong> 
+                        obtida por ( <strong class='titulo-destaque'>${resultadoNotasDosAlunos.itensMaiorNota} </strong>) 
+                        e menor nota <strong class='titulo-destaque'> ${resultadoNotasDosAlunos.menorNota} </strong>
+                        obtida por ( <strong class='titulo-destaque'> ${resultadoNotasDosAlunos.itensMenorNota} </strong>)
                      </p>`;
 
         return item + '<br>';
@@ -83,18 +78,14 @@
     }
 
     function criarItemPorAlunos(aluno, resultadoNotasDosAlunos){
-
-        
-
-        
             var item =`<h3>${aluno}: </h3> 
-                    <p>
-                    maior nota  
-                   <strong class='titulo-destaque' > ${resultadoNotasDosAlunos.maiorNota} </strong> 
-                    em ( <strong class='titulo-destaque'>${resultadoNotasDosAlunos.itensMaiorNota} </strong>) 
-                    e menor nota <strong class='titulo-destaque'> ${resultadoNotasDosAlunos.menorNota} </strong>
-                   em ( <strong class='titulo-destaque'> ${resultadoNotasDosAlunos.itensMenorNota} </strong>)
-                     </p>`;
+                        <p>
+                            maior nota  
+                            <strong class='titulo-destaque' > ${resultadoNotasDosAlunos.maiorNota} </strong> 
+                            em ( <strong class='titulo-destaque'>${resultadoNotasDosAlunos.itensMaiorNota} </strong>) 
+                            e menor nota <strong class='titulo-destaque'> ${resultadoNotasDosAlunos.menorNota} </strong>
+                            em ( <strong class='titulo-destaque'> ${resultadoNotasDosAlunos.itensMenorNota} </strong>)
+                        </p>`;
 
         return item + '<br>';
 
@@ -129,17 +120,16 @@
         return  listaMateriasAlunos;
     }
 
-
     function obterResultadoNotasDosAlunos(notasAlunos){
         
-        var notas = [];
+        var notas = []; // [9.0 , 9.0 , 5.0]
         
         notasAlunos.forEach(e => { notas.push(e.nota) });
         
-        var notasOrdenadas = bubbleSort(notas);
+        var notasOrdenadas = bubbleSort(notas); // [9.0 , 9.0 , 5.0] => 5.0 ,9.0 9.0
 
-        var maiorNota = notasOrdenadas[notasOrdenadas.length - 1];
-        var menorNota = notasOrdenadas[0];
+        var maiorNota = notasOrdenadas[notasOrdenadas.length - 1]; // ultima posição 
+        var menorNota = notasOrdenadas[0]; // menor
 
         var itensMaiorNota = bubbleSort(obterLabelPorNota(maiorNota, notasAlunos)).join(', ');
         var itensMenorNota = bubbleSort(obterLabelPorNota(menorNota, notasAlunos)).join(', ');
@@ -158,10 +148,18 @@
             .filter( function(e){ return e.nota == nota } )
             .forEach(e => labels.push(e.item) );
 
-        return labels;
+        return labels; // ['matematica', 'portug']
     }
-   
 
+    //0 História
+    //1 8.9
+    //2 Português
+    //3 8.2
+    //4 Inglês
+    //5 9
+    //6 Matemática 
+    //7 9.5 
+    // Geografia 8.8 Artes 7 Religião 5
     function obterListaMateriasNotas(materiasNotas){
         materiasNotas = materiasNotas.trim();
         var listaMateriasNotas = materiasNotas.split(' ');
@@ -169,10 +167,12 @@
         var listaMateriasJson = [];
 
         for(var i = 0; i < listaMateriasNotas.length; i+=2){
-            listaMateriasJson.push({
-                item : listaMateriasNotas[i],
-                nota : parseFloat(listaMateriasNotas[i+1])
-            });
+            listaMateriasJson.push(
+                {
+                    item : listaMateriasNotas[i], // materia
+                    nota : parseFloat(listaMateriasNotas[i+1])
+                 }
+            );
         }
 
         return listaMateriasJson;

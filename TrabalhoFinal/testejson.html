@@ -5,39 +5,81 @@
 
 <script>
    
-    var militarJson = {
-       nome : 'Milico de Tal',
-       idade : 35,
-       cursos : ["Segurança", "PQD", "PA", "Programador"],
-       posto : "1 Tenente",
-       quadro : "QOCON"
-    };
+    var texto = `linha 1  linha 2`;
 
-    function imprimirDadosMilitar(militar){
 
-        mostra("Nome: " + militar.nome);
-        mostra("idade: " + militar.idade);
-        mostra("cursos: " + militar.cursos);
-        mostra("posto: " + militar.posto);
-        mostra("quadro: " + militar.quadro);
-    }
-
-    imprimirDadosMilitar(militarJson);
-
-    function pulaLinha() {
-        document.write("<br>");
-    }
-
-    function mostra(frase) {
-        document.write(frase);
-        pulaLinha();
-    }
-
-    document.querySelector("#nomeMilitar").innerHTML = militar;
+    var minhaLista = [ { materia : 'Matematica',
+                         notas : [ // abre
+                                     { aluno : 'Fulano', nota: 10 },
+                                     { aluno : 'Ciclano', nota: 10 }
+                                 ]  // fecha
+                       }, 
+                       { materia : 'Física',
+                         notas : [ { aluno : 'Fulano', nota: 8.5 },
+                                   { aluno : 'Ciclano', nota: 4 } ] 
+                       },
+                       { materia : 'Artes',
+                         notas : [ { aluno : 'Fulano', nota: 10},
+                                   { aluno : 'Ciclano', nota: 10 } ] 
+                       }];
     
-    //imprimirDadosMilitar(militar, idadeMilitar, cursosMilitar, postoMilitar, quadro);
+    
+    var alunosAbaixoMedia = [];
+  
+    for(var i = 0; i < minhaLista.length; i++ ){
+       // console.log(minhaLista[i].materia);
 
-    //(militar2, idadeMilitar2, cursosMilitar2, postoMilitar2, quadro2);
+        var media = 6;
+        var itemMateria = minhaLista[i];
+
+        var alunosNotaMaxima = itemMateria.notas.filter( valorNota => valorNota.nota == 10 );
+        var nomesAlunos = [];
+        
+        alunosNotaMaxima.forEach(alunoNota =>
+            nomesAlunos.push(alunoNota.aluno)
+        );
+        
+        var alunoConcatenado = nomesAlunos.join(', '); 
 
 
+
+       /* var alunoAbaixoMedia = { 
+                    aluno : valorNota.aluno,
+                    nota :  valorNota.nota,
+                    materia: itemMateria.materia
+                 };
+
+        alunosAbaixoMedia.push(alunoAbaixoMedia);
+
+        console.log(alunosReprovados);*/
+
+    }
+
+
+        /*for (let j = 0; j < itemMateria.notas.length; j++) {
+            var valorNota = itemMateria.notas[j];
+            
+            console.log('****' + valorNota.aluno + ' -  ' + valorNota.nota);
+            
+            if(valorNota.nota < media){
+
+                // aluno
+                // nota 
+                // materia 
+
+                var alunoAbaixoMedia = { 
+                    aluno : valorNota.aluno,
+                    nota :  valorNota.nota,
+                    materia: itemMateria.materia
+                 };
+
+                alunosAbaixoMedia.push(alunoAbaixoMedia);
+            }*/
+
+     
+
+
+
+
+   
 </script>
