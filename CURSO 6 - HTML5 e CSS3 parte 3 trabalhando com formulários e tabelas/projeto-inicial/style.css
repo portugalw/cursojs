@@ -186,3 +186,37 @@ p {
 	color: red;
 }
 
+.enviar {
+	width: 40%;
+	padding: 15px 0;
+	background: orange;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	border-radius: 10px;
+	border: none;
+	transition: 1s all;
+	cursor: pointer;
+}
+
+.enviar:hover {
+	background: red;
+	transform: scale(1.05);
+
+}
+
+table {
+	margin: 20px 0 40px;
+}
+
+thead {
+	background: #555 ;
+	color: white;
+	font-weight: bold;
+}
+
+td, th {
+	border: 1px solid orange;
+	padding: 8px 15px ;
+}
+
