@@ -14,9 +14,13 @@ formulario.addEventListener("submit", (e) => {
         "cpf" : e.target.elements["cpf"].value,
         "aniversario" : e.target.elements["aniversario"].value
     }
+
+    localStorage.setItem("dados", JSON.stringify(listaRespostas));
+
+    window.location.href = './abrir-conta-form-2.html'
 })
 
-var  funcaoVerificar = () => {
+var  funcaoVerificar = (campo) => {
      verificaCampo(campo);
 }
 
@@ -25,8 +29,8 @@ var  funcaoRemoverPreventDefault = function(e) {
 }
 
 camposDoFormulario.forEach((campo) => {
-    campo.addEventListener('blur', funcaoVerificar);
-    campo.addEventListener('invalid', funcaoRemoverPreventDefault);
+    campo.addEventListener('blur', () => funcaoVerificar(campo));
+    campo.addEventListener('invalid', evento => evento.preventDefault() );
 })
 
 const tiposDeErro = [
