@@ -1,0 +1,41 @@
+Trabalho intermediário de Java OO
+
+Escreva um programa que:
+	- Tenha no mínimo 2 clases distintas;
+	- Ao menos uma das classes deverá possuir 3 métodos públicos que realizem uma 
+	ação relacionada ao tema;
+	- Defina os atributos das classes e crie encapsulamento para eles;
+	- Crie ao menos um construtor de classe com parâmetro;
+	- Deverá ter uma classe principal com o método main para testar seu programa;
+	- Use Sysout para imprimir os dados do seu programa no console;
+	- Você deverá descrever o que seu programa faz em um breve texto com o passo a passo;
+	- Crie as tabelas no Figma ou em outro programa para definir o relacionamento das classes,
+	seus métodos e atributos (https://www.figma.com/login), https://app.diagrams.net/
+	
+	Seu trabalho final deverá ter 4 itens principais:
+	1 - As definições documentada do que seu programa deve fazer
+	2 - O programa em Java
+	3 - O diagrama de classes
+	4 - O texto explicando o passo a passo
+	
+Escolha um tema abaixo.
+	
+Temas 
+
+[01 BEZERRA] 1 - Venda de Automóveis 
+[02 SOUZA] 12 - Construtora de casas
+[03 STEFANY] 10 - Lava Jato (Processo de lavagem)
+[04 OLIVERIO] 2 - Futebol (Campeonato)
+[05 GIZELLI ]5 - Supermercado (Compra e venda de produtos)
+[06 DAMASCENO] 9 - Empresa de ônibus
+[07 NISHIYAMA] 6 - Loja de sanduíche (Pedidos)
+[08 BUENO] 7 - Máquina de Café (Funcionalidades)
+[09 Nóbrega] 4 - Quartel Militar (Operações)
+[10 Cleilton] -  
+
+3 - Venda de itens de Animes (Loja Itens)
+8 - Vídeo Game (funções do console)
+11 - Loja Materiais de Construção 
+13 - Oficina Mecânica
+14 - Reembolsável FAB
+15 - Guindaste (Ações do guindaste)

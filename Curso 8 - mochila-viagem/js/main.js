@@ -6,7 +6,6 @@
     itens.forEach(e => {
         criaElemento (e)
     });
-   
  
     form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -18,17 +17,18 @@
             "quantidade": quantidadeInput.value
         };
 
+        if(!validarItem(itemAtual))
+            return;
+       
+
         const existeItem = itens.find(item => item.nome == itemAtual.nome);
 
         if(existeItem){
             itemAtual.id = existeItem.id;
             atualizaElemento(itemAtual);
-
-            const index = itens.findIndex(item => item.id == itemAtual.id);
-
-            itens[index] = itemAtual;
+            itens[itens.findIndex(item => item.id == itemAtual.id)] = itemAtual;
         }else{
-            itemAtual.id = Date.now();
+            itemAtual.id = criarIdentificador();
             criaElemento(itemAtual);
             itens.push(itemAtual);
         }
@@ -45,7 +45,7 @@
                                                 <strong data-id='${item.id}'>${item.quantidade}</strong>
                                                 ${item.nome} 
                                                 <button onclick='deletarItem(${item.id})'>X</button>
-                                            </li>`);
+                                              </li>`);
     }
 
     function atualizaElemento(item){
@@ -57,17 +57,37 @@
     }
 
     function deletarItem(idItem){
-        deletarElemento(idItem);
-        const index = itens.findIndex(item => item.id == idItem);
         
-        itens.splice(index, 1);
+        let podeRemoverItem = confirm("Deseja realmente excluir o item?");
 
-        atualizaLocalStorage();
+        if(podeRemoverItem){
+            deletarElemento(idItem);
+            const index = itens.findIndex(item => item.id == idItem);
+            itens.splice(index, 1);
+            atualizaLocalStorage();
+        }
     }
 
     function deletarElemento(idItem){
         document.querySelector("[data-id='" + idItem + "']").parentNode.remove();
     }
 
-   
+   function criarIdentificador(){
+        return Date.now();
+   }
+
+   function validarItem(itemAtual){
+    
+        if(itemAtual.nome == '' || itemAtual.nome == undefined){
+            alert('Nome não pode estar vazio!');
+            return false;
+        }
+
+        if(itemAtual.quantidade == '' || itemAtual.quantidade <= 0 || itemAtual.quantidade > 20){
+            alert('Quantidade não permitida!');
+            return false;
+        }
+
+        return true;
+   }
 
