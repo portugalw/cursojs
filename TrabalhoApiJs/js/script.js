@@ -1,6 +1,8 @@
 import dataBase from "./dataBase.js";
 
+const dogListContext = document.getElementById('dog-list-context');
 const inputSearch = document.getElementById('input-search');
+const canvas = document.getElementById('canvas');
 const formSearch = document.getElementById('form-search');
 const imageDog = document.getElementById('image-dog');
 const titleResult = document.getElementById('title-result');
@@ -11,6 +13,7 @@ const elementsFind = document.querySelectorAll('[data-find]');
 
 var dogList = [];
 var dogListIndex = 0;
+var breed = '';
 
 
 async function getDogImagesFromApi(dogBreed){
@@ -35,6 +38,7 @@ async function getDogImagesFromApi(dogBreed){
 }
 
 addEvents();
+loadDogList();
 
 function addEvents(){
     formSearch.addEventListener('submit', (e) => {
@@ -44,16 +48,17 @@ function addEvents(){
 
     btnNextDog.onclick = nextDogImage;
     btnPreviewDog.onclick = previewDogImage;
+    btnAddDog.onclick = addDog;
 }
 
 async function searchDog(){
-    let breed = document.getElementById('input-search').value;
+    breed = document.getElementById('input-search').value;
     let breedResult = await getDogImagesFromApi(breed);
 
     if(!breedResult.success){
         titleResult.innerHTML = breedResult.message
         elementsFind.forEach(e => e.style.display = 'none');
-        
+        breed = '';
         return;
     }
 
@@ -66,23 +71,38 @@ async function searchDog(){
 
 function convertImageToBase64(){
 
+    canvas.getContext('2d').drawImage(imageDog, 0, 0, canvas.width, canvas.height);
+    
+    let imagemURL = canvas.toDataURL("image/jpeg");
+
+    return imagemURL;
 }
 
-function addDogInDB(dogBreed, dogImage){
-    dataBase.addItem({ src :dogList[dogListIndex], name: breed });
+function addDog(){
+   
+    let imageBase64 = convertImageToBase64();
+    let item = dataBase.addItem({breed: breed, image: imageBase64});
+    addDogList(item);
 }
 
-function removeDogFromDB(id){
+function removeDog(element){
+    let id = element.target.attributes['data-id'].value;
     dataBase.removeItemById(id);
+    element.target.parentElement.parentElement.remove()
 }
 
-function writeDogInList(dogBreed, dogImage){
-
+function addDogList(item){
+    let htmlTemplate = getDogHtmlTemplate(item);
+    dogListContext.insertAdjacentHTML('beforeend', htmlTemplate)
+    document.getElementById('btn-remove-'+item.id).onclick = removeDog;
 }
 
-function removeDogFromList(dogId){
+function loadDogList(){
+    let dogList = dataBase.getAll();
 
+    dogList.forEach(d => addDogList(d));
 }
+
 
 function nextDogImage(){
 
@@ -107,4 +127,17 @@ function previewDogImage(){
     }
     
     imageDog.src = dogList[dogListIndex];
+}
+
+function getDogHtmlTemplate(item){
+    return `<div class='col-md-6 col-lg-3' data-id=${item.id}>
+                <div class='blog-entry'>
+                    <a class='img-link'>
+                        <img width='150' height='100' src=${item.image} alt='Image' >
+                    </a>
+                    <h1><a>${item.breed}</a></h1>
+                    <a>ID: ${item.id}</a>
+                    <a id='btn-remove-${item.id}' data-id=${item.id}>Remover</a>
+                </div>
+            </div>`;
 }

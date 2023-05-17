@@ -65,7 +65,7 @@
 		<div class="container">
 			<div class="row mb-4">
 				<div class="col-sm-6">
-					<h2 id="title-result" class="posts-entry-title">--RAÇA--</h2>
+					<h2 id="title-result" class="posts-entry-title">Procure pela raça...</h2>
 				</div>
 			</div>
 			<div class="row g-3">
@@ -73,8 +73,8 @@
 					<div class="row g-3">
 						<div class="col-md-6">
 							<div class="blog-entry">
-									<img data-find id="image-dog" src="images/search-dog.gif" alt="Image" class="img-fluid">
-									</div>
+									<img  width="250" height="200"   crossorigin="anonymous" data-find id="image-dog" src="images/search-dog.gif" alt="Image">
+							</div>
 									<br>
 								<p data-find>
 									<a id="btn-preview-dog" class="btn btn-sm btn-outline-primary"> <<<< </a>
@@ -82,7 +82,7 @@
 									
 								</p>
 								<a data-find id="btn-add-dog" class="btn btn-sm btn-outline-primary">Adicionar na lista</a>
-								
+								<canvas style="display:none" id="canvas" width="150" height="100"></canvas>
 							</div>
 						</div>
 						
@@ -97,18 +97,7 @@
 	<!-- Start posts-entry -->
 	<section class="section posts-entry posts-entry-sm bg-light">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-lg-3" data-id>
-					<div class="blog-entry">
-						<a class="img-link">
-							<img src="" alt="Image" class="img-fluid">
-						</a>
-						<span class="date">ID: </span>
-						<h2><a>--RAÇA--</a></h2>
-						<p><a class="read-more">Remover animal</a></p>
-					</div>
-				</div>
-			
+			<div class="row" id="dog-list-context">
 			</div>
 		</div>
 	</section>
@@ -124,7 +113,7 @@
     </div>
 
 	<script src="js/script.js" type="module" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
-    <script src="js/aos.js"></script>
+	<script src="js/aos.js"></script>
     <script src="js/custom.js"></script>
     
   </body>
