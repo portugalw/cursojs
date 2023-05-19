@@ -12,7 +12,7 @@ function getAll(){
 
 function add(item){
     
-    item.id = criarIdentificador();
+    item.id = createId();
     listItems.push(item);
     localStorage.setItem('data', JSON.stringify(listItems));
     return item;
@@ -25,6 +25,6 @@ function remove(id){
     localStorage.setItem('data', JSON.stringify(listItems));
 }
 
-function criarIdentificador(){
+function createId(){
     return Date.now();
 }
