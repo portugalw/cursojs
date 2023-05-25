@@ -37,11 +37,32 @@ async function getDogImagesFromApi(dogBreed){
     }
 }
 
+async function getAllDogBreedsFromApi(){
+    try{
+        const breedListResponse = await fetch('https://dog.ceo/api/breeds/list/all');
+        const breedList = await breedListResponse.json();
+
+        if(breedList.status == 'error'){
+            throw Error('Raça de cachorro não encontrada.');
+        }
+
+        return { 
+            success: true,
+            breeds: breedList.message
+        }
+    }
+    catch(erro){
+        console.log(erro);
+        return { success: false, breeds:{} }
+    }
+}
+
 addEvents();
 loadDogList();
+loadBreedList();
 
 function addEvents(){
-    formSearch.addEventListener('submit', (e) => {
+    inputSearch.addEventListener('change', (e) => {
         e.preventDefault();
         searchDog()
     });
@@ -52,7 +73,7 @@ function addEvents(){
 }
 
 async function searchDog(){
-    breed = document.getElementById('input-search').value;
+    breed = inputSearch.value;
     let breedResult = await getDogImagesFromApi(breed);
 
     if(!breedResult.success){
@@ -64,7 +85,7 @@ async function searchDog(){
 
     dogList = breedResult.dogList;
     dogListIndex = 0;
-    titleResult.innerHTML = breed + ' - ' + breedResult.message;
+    titleResult.innerHTML = inputSearch.value.replace('\\' , ' ') + ' - ' + breedResult.message;
     elementsFind.forEach(e => e.style.display = 'inline-block');
     imageDog.src = dogList[dogListIndex];
 }
@@ -89,15 +110,44 @@ function removeDog(element){
     let id = element.target.attributes['data-id'].value;
     dataBase.removeItemById(id);
     element.target.parentElement.parentElement.remove()
+
+    loadDogList();
 }
 
 function addDogList(item){
     let htmlTemplate = getDogHtmlTemplate(item);
-    dogListContext.insertAdjacentHTML('beforeend', htmlTemplate)
+    dogListContext.insertAdjacentHTML('afterBegin', htmlTemplate)
     document.getElementById('btn-remove-'+item.id).onclick = removeDog;
 }
 
+async function loadBreedList(){
+    let breedsResponse= await getAllDogBreedsFromApi();
+    let breeds = breedsResponse.breeds;
+
+    for(let breedKey in breeds){
+
+        let option = document.createElement('option');
+
+        if(breeds[breedKey].length > 0){
+            breeds[breedKey].forEach(subBreed => {
+                option.innerHTML = `${subBreed} ${breedKey}`,
+                option.value = breedKey+ '\\' + subBreed
+            });
+          
+        }
+        else {
+            option.innerHTML = breedKey,
+            option.value = breedKey
+        }
+
+        inputSearch.appendChild(option);
+    }
+}
+
 function loadDogList(){
+    
+    dogListContext.innerHTML = "";
+    
     let dogList = dataBase.getAll();
 
     dogList.forEach(d => addDogList(d));
@@ -131,13 +181,14 @@ function previewDogImage(){
 
 function getDogHtmlTemplate(item){
     return `<div class='col-md-6 col-lg-3' data-id=${item.id}>
-                <div class='blog-entry'>
+                <div class='blog-entry box-dog'>
                     <a class='img-link'>
                         <img width='150' height='100' src=${item.image} alt='Image' >
                     </a>
-                    <h1><a>${item.breed}</a></h1>
-                    <a>ID: ${item.id}</a>
-                    <a id='btn-remove-${item.id}' data-id=${item.id}>Remover</a>
+                    <h4>
+                        <a>${item.breed.replace('\\', ' ')}</a>
+                    </h4>
+                    <a id='btn-remove-${item.id}' data-id=${item.id} class='btn-remover btn btn-xm'>Remover</a>
                 </div>
             </div>`;
 }

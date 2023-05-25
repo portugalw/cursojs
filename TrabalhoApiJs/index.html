@@ -23,6 +23,7 @@
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/custom-style.css">
 
 	<title>Busca de raças</title>
 </head>
@@ -48,8 +49,9 @@
 								<span></span>
 							</a>
 							<form id="form-search" class="search-form d-none d-lg-inline-block">
-								<input id="input-search" type="text" class="form-control" placeholder="Search...">
-								<span class="bi-search"></span>
+								<select id="input-search" class="select-search-principal">
+									<option value="-">Selecione a raça...</option>
+								</select>
 							</form>
 						</div>
 					</div>
@@ -73,7 +75,7 @@
 					<div class="row g-3">
 						<div class="col-md-6">
 							<div class="blog-entry">
-									<img  width="250" height="200"   crossorigin="anonymous" data-find id="image-dog" src="images/search-dog.gif" alt="Image">
+									<img  class="img-principal"   crossorigin="anonymous" data-find id="image-dog" src="images/search-dog.gif" alt="Image">
 							</div>
 									<br>
 								<p data-find>
